@@ -1,0 +1,125 @@
+package bank;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Login extends JFrame {
+    // Instance variables
+    JLabel l1, l2, l3;
+    JTextField tf1;
+    JPasswordField pf2;
+    JButton b1, b4;
+
+    public Login() {
+        // Setting the title of the frame
+        setTitle("LEE Bank");
+
+        // Setting layout to null
+        setLayout(null);
+
+        // Create a gradient panel
+        JPanel gradientPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                Color color1 = new Color(32, 178, 170); 
+                Color color2 = new Color(0, 128, 128);  
+                GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        gradientPanel.setLayout(null);
+        gradientPanel.setBounds(0, 0, 800, 500);
+        add(gradientPanel);
+
+        // Initializing components
+        l1 = new JLabel("Lee Bank");
+        l1.setFont(new Font("Century Gothic", Font.BOLD, 40));
+        l1.setForeground(Color.WHITE);
+        l1.setHorizontalAlignment(SwingConstants.CENTER);
+
+        l2 = new JLabel("Email:");
+        l2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+        l2.setForeground(Color.WHITE);
+
+        l3 = new JLabel("Pin Number:");
+        l3.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+        l3.setForeground(Color.WHITE);
+
+        tf1 = new JTextField(15);
+        tf1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        tf1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
+        pf2 = new JPasswordField(15);
+        pf2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        pf2.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
+        // Login button (Teal background with white text)
+        b1 = new JButton("Login");
+        b1.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        b1.setBackground(new Color(0, 128, 128));  
+        b1.setForeground(Color.WHITE);  
+        b1.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+
+        // Sign Up button (Teal background with white text and border)
+        b4 = new JButton("Sign Up");
+        b4.setFont(new Font("Century Gothic", Font.BOLD, 14));
+        b4.setBackground(new Color(0, 128, 128)); 
+        b4.setForeground(Color.WHITE);  
+        b4.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));  
+
+        // Setting bounds for components
+        l1.setBounds(200, 50, 400, 50);
+        l2.setBounds(200, 150, 100, 30);
+        l3.setBounds(200, 200, 100, 30);
+
+        tf1.setBounds(320, 150, 200, 30);
+        pf2.setBounds(320, 200, 200, 30);
+
+        b1.setBounds(260, 300, 120, 40); // Login button
+        b4.setBounds(400, 300, 120, 40); // Sign Up button
+
+        // Adding components to the gradient panel
+        gradientPanel.add(l1);
+        gradientPanel.add(l2);
+        gradientPanel.add(l3);
+        gradientPanel.add(tf1);
+        gradientPanel.add(pf2);
+        gradientPanel.add(b1);
+        gradientPanel.add(b4);
+
+        // Adding action listener for Login button
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Implement login functionality here
+                JOptionPane.showMessageDialog(null, "Login button clicked!");
+            }
+        });
+
+        // Adding action listener for Sign Up button
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Open the Sign Up frame and close the Login frame
+                new Signup(); // Open the Signup frame
+                dispose();    // Close the Login frame
+            }
+        });
+
+        // Setting frame properties
+        setSize(800, 500);
+        setLocation(350, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        // Creating an instance of Login class
+        new Login();
+    }
+}
